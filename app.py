@@ -230,5 +230,10 @@ def registration_page():
 def account_page():
     return render_template('./templates/account.html')
 
+@app.route('/radharani')
+def radharani():
+    return render_template('radhaRani.html')
+
+
 if __name__ == '__main__':
     app.run(debug=True)
