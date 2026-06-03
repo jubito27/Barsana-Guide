@@ -234,6 +234,89 @@ def account_page():
 def radharani():
     return render_template('radhaRani.html')
 
+@app.route('/maangarh')
+def maangarh():
+    return render_template('maangarh.html')
+
+@app.route('/dangarh')
+def dangarh():
+    return render_template('dangarh.html')
+
+@app.route('/vilasgarh')
+def vilasgarh():
+    return render_template('vilasgarh.html')
+
+@app.route('/morkuti')
+def morkuti():
+    return render_template('morkuti.html')
+
+@app.route('/kushalbihari')
+def kushalbihari():
+    return render_template('kushalbihari.html')
+
+@app.route('/chitrasakhi')
+def chitrasakhi():
+    return render_template('chitrasakhi.html')
+
+@app.route('/gehvarvan')
+def gehvarvan():
+    return render_template('gehvarvan.html')
+
+@app.route('/radhaBagh')
+def radhaBagh():
+    return render_template('radhaBagh.html')
+
+@app.route('/krishnaBagh')
+def krishnaBagh():
+    return render_template('krishnaBagh.html')
+
+@app.route('/priyakund')
+def priyakund():
+    return render_template('priyakund.html')
+
+@app.route('/sankrikhor')
+def sankrikhor():
+    return render_template('sankrikhor.html')
+
+@app.route('/rangiligali')
+def rangiligali():
+    return render_template('rangiligali.html')
+
+@app.route('/vinodbaba')
+def vinodbaba():
+    return render_template('vinodbaba.html')
+
+@app.route('/rameshbabagaushala')
+def rameshbabagaushala():
+    return render_template('rameshbabagaushala.html')
+
+@app.route('/brishbhanugaushala')
+def brishbhanugaushala():
+    return render_template('brishbhanugaushala.html')
+
+@app.route('/108kutiya')
+def kutiya():
+    return render_template('108kutiya.html')
+
+@app.route('/aboutme')
+def aboutme():
+    return render_template('aboutme.html')
+
+@app.route('/admin')
+def admin():
+    return render_template('admin.html')
+
+@app.route('/guidecard')
+def guidecard():
+    return render_template('guidecard.html')
+
+@app.route('/guidebooking')
+def guidebooking():
+    return render_template('guidebooking.html')
+
+@app.route('/live3')
+def live3():
+    return render_template('live3.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
