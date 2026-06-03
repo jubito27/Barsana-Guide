@@ -318,5 +318,13 @@ def guidebooking():
 def live3():
     return render_template('live3.html')
 
+@app.route('/aboutme')
+def aboutme():
+    return render_template('aboutme.html')
+
+@app.route('/livedarshan')
+def livedarshan():
+    return render_template('live3.html')
+
 if __name__ == '__main__':
     app.run(debug=True)
