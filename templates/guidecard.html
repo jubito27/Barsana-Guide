@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Braj Guide - Choose Your Spiritual Guide</title>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="./style/guidecard.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo">Braj Guide</div>
+        <p>Apni spiritual yatra ke liye sahi saathi chunein</p>
+    </header>
+
+    <div class="guides-container">
+        
+        <div class="guide-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="card-image">
+                <img src="https://images.unsplash.com/photo-1549616590-245d437f2a5a?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=400&ixid=MnwxfDB8MXxyYW5kb218fHx8fHx8fHwxNjYwNjcxNDM5&ixlib=rb-1.2.1&q=80&w=400" alt="Guide 1">
+            </div>
+            <div class="card-content">
+                <h3>Pandit Rajesh Sharma</h3>
+                <p class="languages"><i class="fas fa-language"></i> Hindi, English, Sanskrit</p>
+                <div class="rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <span>(5.0)</span>
+                </div>
+                <button class="book-btn">Book Darshan <i class="fas fa-arrow-right"></i></button>
+            </div>
+        </div>
+
+        <div class="guide-card" data-aos="fade-up" data-aos-delay="300">
+            <div class="card-image">
+                <img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=400&ixid=MnwxfDB8MXxyYW5kb218fHx8fHx8fHwxNjYwNjcxNDk5&ixlib=rb-1.2.1&q=80&w=400" alt="Guide 2">
+            </div>
+            <div class="card-content">
+                <h3>Acharya Kishan Gopal</h3>
+                <p class="languages"><i class="fas fa-language"></i> Hindi, Bengali, Gujarati</p>
+                <div class="rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <span>(5.0)</span>
+                </div>
+                <button class="book-btn">Book Darshan <i class="fas fa-arrow-right"></i></button>
+            </div>
+        </div>
+
+        <div class="guide-card" data-aos="fade-up" data-aos-delay="500">
+            <div class="card-image">
+                <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=400&ixid=MnwxfDB8MXxyYW5kb218fHx8fHx8fHwxNjYwNjcxNTM1&ixlib=rb-1.2.1&q=80&w=400" alt="Guide 3">
+            </div>
+            <div class="card-content">
+                <h3>Smt. Meera Bai (Guide)</h3>
+                <p class="languages"><i class="fas fa-language"></i> Hindi, English, Punjabi</p>
+                <div class="rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <span>(5.0)</span>
+                </div>
+                <button class="book-btn">Book Darshan <i class="fas fa-arrow-right"></i></button>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000, // Animation lasts 1 second
+            once: true // Animation happens only once
+        });
+
+        document.querySelectorAll('.book-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                window.location.href = 'guidebooking.html';
+            });
+        });
+    </script>
+</body>
+</html>

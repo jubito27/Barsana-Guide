@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BrijGuide Admin Panel</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #fcf8f0; padding: 20px; }
+        h2 { color: #8B4513; text-align: center; border-bottom: 3px solid #FF9933; display: inline-block; padding-bottom: 10px; width: 100%; }
+        .table-container { overflow-x: auto; margin-top: 20px; background: white; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        table { width: 100%; border-collapse: collapse; min-width: 1400px; }
+        th { background: #FF9933; color: white; padding: 15px; text-align: left; font-size: 14px; }
+        td { padding: 12px; border-bottom: 1px solid #eee; font-size: 13px; vertical-align: top; }
+        tr:hover { background-color: #fff9f0; }
+        .refresh-btn { background: #8B4513; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; float: right; margin-bottom: 10px; font-weight: bold; }
+        .refresh-btn:hover { background: #FF9933; }
+        .badge { background: #eef2f7; padding: 3px 8px; border-radius: 4px; font-size: 11px; font-weight: bold; color: #4a5568; }
+        .badge-guide { background: #feebc8; color: #c05621; }
+        .badge-pack { background: #e6fffa; color: #234e52; }
+    </style>
+</head>
+<body>
+
+    <h2>BrijGuide - All Registrations & Bookings</h2>
+    <button class="refresh-btn" onclick="loadData()">Refresh List</button>
+
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>User Details</th>
+                    <th>Phone</th>
+                    <th>City</th>
+                    <th>Visit Date</th>
+                    <th>Members</th>
+                    <th>Selected Guide</th>
+                    <th>Package Type</th>
+                    <th>Selected Places</th>
+                    <th>Free Add-ons</th>
+                </tr>
+            </thead>
+            <tbody id="userTableBody">
+                </tbody>
+        </table>
+    </div>
+
+    <script>
+        async function loadData() {
+            try {
+                // Localhost Flask endpoint se data fetch kar rahe hain
+                const response = await fetch('http://127.0.0.1:5000/braj_user/');
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                
+                const tableBody = document.getElementById('userTableBody');
+                tableBody.innerHTML = ''; // Purana data clear karein
+
+                if (data.length === 0) {
+                    tableBody.innerHTML = '<tr><td colspan="10" style="text-align: center; padding: 20px;">No registrations found yet.</td></tr>';
+                    return;
+                }
+
+                data.forEach(user => {
+                    // Empty string ya null fields ko clean render karne ke liye variables
+                    const guide = user.selected_guide ? `<span class="badge badge-guide">${user.selected_guide}</span>` : '<i>Not Booked</i>';
+                    const packageType = user.package_type ? `<span class="badge badge-pack">${user.package_type}</span>` : '-';
+                    
+                    tableBody.innerHTML += `
+                        <tr>
+                            <td>${user.id}</td>
+                            <td><b>${user.name}</b><br><small style="color:#666;">${user.email}</small></td>
+                            <td>${user.phone}</td>
+                            <td>${user.city || '-'}</td>
+                            <td>${user.visit_date || '-'}</td>
+                            <td>${user.members || '1'}</td>
+                            <td>${guide}</td>
+                            <td>${packageType}</td>
+                            <td><span style="font-size: 12px; color:#555;">${user.selected_places || '-'}</span></td>
+                            <td><small style="color:#2f855a;">${user.free_addons || '-'}</small></td>
+                        </tr>
+                    `;
+                });
+            } catch (err) {
+                console.error('Error loading data:', err);
+                const tableBody = document.getElementById('userTableBody');
+                tableBody.innerHTML = '<tr><td colspan="10" style="text-align: center; padding: 20px; color: red; font-weight: bold;">Failed to load data. Please check if your Flask Python server is running.</td></tr>';
+                alert("Failed to load data! Check browser console for details.");
+            }
+        }
+
+        // Page load hote hi data fetch karein
+        window.onload = loadData;
+    </script>
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BrijGuide Registration</title>
+    <link rel="stylesheet" href="./style/registeration.css" />
+</head>
+
+<body>
+    <div class="registration-container">
+        <div class="form-header">
+            <h2>BrijGuide Registration</h2>
+            <p>Apni spiritual yatra ki shuruwat karein</p>
+        </div>
+
+        <form id="registrationForm">
+            <div class="input-group">
+                <label>Full Name</label>
+                <input id="nameInput" type="text" placeholder="Radhe Shyam" required />
+            </div>
+
+            <div class="row">
+                <div class="input-group">
+                    <label>Email Address</label>
+                    <input type="email" placeholder="example@gmail.com" required />
+                </div>
+                <div class="input-group">
+                    <label>Phone No.</label>
+                    <input type="tel" placeholder="+91 00000 00000" required />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="input-group">
+                    <label>City</label>
+                    <input type="text" placeholder="Enter your city" />
+                </div>
+                <div class="input-group">
+                    <label>State</label>
+                    <select id="stateSelect">
+                        <option value="">Select State</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="input-group">
+                    <label>Visit Date</label>
+                    <input type="date" required />
+                </div>
+                <div class="input-group">
+                    <label>No. of Members</label>
+                    <input type="number" min="1" placeholder="1" />
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>Places Interested In</label>
+                <textarea rows="3" placeholder="e.g. Vrindavan , Barsana..."></textarea>
+            </div>
+
+            <div class="input-group">
+                <label>No. of Days</label>
+                <input type="number" min="1" placeholder="Duration of stay" />
+            </div>
+
+            <button type="submit" class="submit-btn" onclick='./account.html'>Register</button>
+        </form>
+    </div>
+
+    <script>
+        const states = [
+            "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh", "Goa", "Gujarat", "Haryana", "Jharkhand", "Karnataka", "Himachal Pradesh", "Kerala", "Madhya Pradesh", "Maharashtra", "Manipur", "Meghalaya", "Mizoram", "Nagaland", "Odisha", "Punjab", "Rajasthan", "Sikkim", "Tamil Nadu", "Telangana", "Tripura", "Uttar Pradesh", "Uttarakhand", "West Bengal", "Delhi", "Jammu & Kashmir", "Ladakh", "Puducherry",
+        ];
+
+        const stateSelect = document.getElementById("stateSelect");
+        if (stateSelect) {
+            states.forEach((state) => {
+                const option = document.createElement("option");
+                option.value = state;
+                option.textContent = state;
+                stateSelect.appendChild(option);
+            });
+        }
+
+        document
+            .getElementById("registrationForm")
+            .addEventListener("submit", async (e) => {
+                e.preventDefault();
+
+                const formData = {
+                    name: document.getElementById('nameInput').value,
+                    email: document.querySelector('input[type="email"]').value,
+                    phone: document.querySelector('input[type="tel"]').value,
+                    city: document.querySelector('input[placeholder="Enter your city"]').value,
+                    state: document.getElementById('stateSelect').value,
+                    visitDate: document.querySelector('input[type="date"]').value,
+                    noOfMembers: document.querySelector('input[placeholder="1"]').value,
+                    placesInterested: document.querySelector("textarea").value,
+                    noOfDays: document.querySelector('input[placeholder="Duration of stay"]').value,
+                };
+
+                try {
+                    const response = await fetch("http://127.0.0.1:5000/register", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify(formData),
+                    });
+
+                    const result = await response.json();
+                    if (response.ok) {
+                        //alert(result.message || "Registration successful!");
+                        
+                        // Data ko pehle memory mein save kiya
+                        localStorage.setItem('userRegistered', 'true');
+                        localStorage.setItem('user_name', formData.name);
+                        localStorage.setItem('user_email', formData.email);
+                        localStorage.setItem('isLoggedIn', 'true');
+                        
+                        // Pehle seedha redirect karenge (reset karne ki need nahi hai)
+                        window.location.href = 'http://127.0.0.1:5500/templates/account';
+                    } else {
+                        alert(result.message || result.error || "Registration failed!");
+                    }
+                } catch (err) {
+                    alert("Unable to connect to backend server!");
+                }
+            });
+        
+    </script>
+</body>
+
+</html>

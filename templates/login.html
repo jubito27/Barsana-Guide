@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BrijGuide Login</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #fcf8f0; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .login-container { background: white; padding: 40px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); width: 100%; max-width: 400px; text-align: center; }
+        h2 { color: #8B4513; margin-bottom: 5px; }
+        p { color: #666; font-size: 14px; margin-bottom: 25px; }
+        .input-group { margin-bottom: 20px; text-align: left; }
+        label { display: block; font-size: 14px; margin-bottom: 5px; color: #333; font-weight: 600; }
+        input { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; font-size: 15px; }
+        .btn { width: 100%; background: #FF9933; color: white; border: none; padding: 12px; border-radius: 5px; font-size: 16px; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        .btn:hover { background: #8B4513; }
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+
+<div class="login-container">
+    <h2>BrijGuide Login</h2>
+    <p>Apne registered email ke sath OTP login karein</p>
+
+    <div id="emailSection">
+        <div class="input-group">
+            <label>Email Address</label>
+            <input type="email" id="loginEmail" placeholder="example@gmail.com" required>
+        </div>
+        <button class="btn" onclick="sendOTP()">Send OTP</button>
+    </div>
+
+    <div id="otpSection" class="hidden">
+        <div class="input-group">
+            <label>Enter 6-Digit OTP</label>
+            <input type="text" id="otpInput" placeholder="123456" maxlength="6">
+        </div>
+        <button class="btn" onclick="verifyOTP()">Verify & Login</button>
+    </div>
+</div>
+
+<script>
+    let userEmail = "";
+
+    async function sendOTP() {
+        const email = document.getElementById('loginEmail').value;
+        if (!email) { alert("Please enter email!"); return; }
+
+        try {
+            console.log('Check 1')
+            // Port badal kar 5000 kiya
+            const response = await fetch('http://127.0.0.1:5000/send-otp', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email: email })
+            });
+            console.log('check 2')
+            const data = await response.json();
+            console.log(data)
+            if (response.ok) {
+                alert(data.message);
+                userEmail = email; 
+                document.getElementById('emailSection').classList.add('hidden');
+                document.getElementById('otpSection').classList.remove('hidden');
+                console.log('OTP sent successfully');
+            } else {
+                alert(data.error || "Email not registered!");
+                console.log('Error sending OTP:', data.error);
+            }
+        } catch (err) {
+            console.error(err);
+            alert("Server connection failed! Check if Flask is running.");
+        }
+    }
+
+    // Bug Fixed: aasync se double 'a' hata kar 'async' kiya
+    async function verifyOTP() {
+        const otp = document.getElementById('otpInput').value;
+        if (!otp) { alert("Please enter OTP!"); return; }
+
+        try {
+            // Port badal kar 5000 kiya
+            const response = await fetch('http://127.0.0.1:5000/verify-otp', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email: userEmail, otp: otp })
+            });
+            const data = await response.json();
+
+            if (response.ok) {
+                alert("Radhe Radhe! Login Successful!");
+                
+                localStorage.setItem('isLoggedIn', 'true');
+                localStorage.setItem('user_email', data.user_data.email);
+                localStorage.setItem('user_name', data.user_data.name);
+                localStorage.setItem('userRegistered', 'true');
+                
+                // Port badal kar 5000 kiya taaki seedha Flask page khule
+                window.location.href = './account.html';
+            } else {
+                alert(data.error || "Invalid OTP!");
+            }
+        } catch (err) {
+            console.error(err);
+            alert("Verification failed!");
+        }
+    }
+</script>
+</body>
+</html>

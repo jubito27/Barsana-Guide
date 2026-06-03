@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Guide Booking</title>
+    <link rel="stylesheet" href="./style/guidebooking.css" />
+
+</head>
+
+<body>
+    <div class="booking-container" data-aos="fade-in">
+        <h2 class="spiritual-title">Apni Braj Yatra Customize Karein</h2>
+
+        <form id="bookingForm">
+            <div class="section-card">
+                <h3><i class="fas fa-box-open"></i> Guide Package Chunein</h3>
+                <div class="package-options">
+                    <label class="p-card"><input type="radio" name="package" value="only" checked />
+                        <span>Guide Only</span></label>
+                    <label class="p-card"><input type="radio" name="package" value="taxi" />
+                        <span>Guide + Taxi</span></label>
+                    <label class="p-card"><input type="radio" name="package" value="hotel" />
+                        <span>Guide + Hotel</span></label>
+                    <label class="p-card"><input type="radio" name="package" value="full" />
+                        <span>Full Package (VIP)</span></label>
+                </div>
+            </div>
+
+            <div class="section-card">
+                <h3>
+                    <i class="fas fa-map-marker-alt"></i> Darshan Ke Sthan (Multiple
+                    Select)
+                </h3>
+                <p class="hint">Dham select karein, fir mandir chunein:</p>
+
+                <div class="city-selector">
+                    <div class="city-item">
+                        <label class="main-city">
+                            <input type="checkbox" onchange="togglePlaces('barsana-list')" />
+                            Barsana
+                        </label>
+                        <div id="barsana-list" class="sub-places">
+                            <label><input type="checkbox" name="places" value="Radha Rani Temple" />
+                                Radha Rani Temple</label>
+                            <label><input type="checkbox" name="places" value="Kirti Mandir" />
+                                Kirti Mandir</label>
+                            <label><input type="checkbox" name="places" value="Maan Garh" />
+                                Maan Garh</label>
+                        </div>
+                    </div>
+
+                    <div class="city-item">
+                        <label class="main-city">
+                            <input type="checkbox" onchange="togglePlaces('vrindavan-list')" />
+                            Vrindavan
+                        </label>
+                        <div id="vrindavan-list" class="sub-places">
+                            <label><input type="checkbox" name="places" value="Bankey Bihari" />
+                                Bankey Bihari Ji</label>
+                            <label><input type="checkbox" name="places" value="Prem Mandir" />
+                                Prem Mandir</label>
+                            <label><input type="checkbox" name="places" value="ISKCON" /> ISKCON
+                                Temple</label>
+                            <label><input type="checkbox" name="places" value="Nidhivan" />
+                                Nidhivan</label>
+                        </div>
+                    </div>
+
+                    <div class="city-item">
+                        <label class="main-city">
+                            <input type="checkbox" onchange="togglePlaces('govardhan-list')" />
+                            Goverdhan
+                        </label>
+                        <div id="govardhan-list" class="sub-places">
+                            <label><input type="checkbox" name="places" value="Parikrama" />
+                                Goverdhan Parikrama</label>
+                            <label><input type="checkbox" name="places" value="Mansiganga" />
+                                Mansi Ganga</label>
+                            <label><input type="checkbox" name="places" value="Danghati" />
+                                Danghati Temple</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-card">
+                <h3><i class="fas fa-gift"></i> Free Add-ons</h3>
+                <div class="free-addons">
+                    <label class="addon-item">
+                        <input type="checkbox" name="addons" value="prasad" />
+                        <span class="addon-text">Mandir Prasad (Brijvasi Peda)
+                            <span class="free-tag">Free</span></span>
+                    </label>
+                    <label class="addon-item">
+                        <input type="checkbox" name="addons" value="tulsi" />
+                        <span class="addon-text">Tulsi Mala & Braj Raj <span class="free-tag">Free</span></span>
+                    </label>
+                </div>
+            </div>
+
+            <button type="submit" class="final-book-btn">
+                Confirm Booking & Radhe Radhe!
+            </button>
+        </form>
+    </div>
+
+    <script>
+        function togglePlaces(listId) {
+            const list = document.getElementById(listId);
+            list.classList.toggle('active');
+        }
+
+        document.getElementById('bookingForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
+            
+            // Get selected values from form
+            const package_type = document.querySelector('input[name="package"]:checked').value;
+            const places = Array.from(document.querySelectorAll('input[name="places"]:checked')).map(cb => cb.value);
+            const addons = Array.from(document.querySelectorAll('input[name="addons"]:checked')).map(cb => cb.value);
+            const userEmail = localStorage.getItem('user_email');
+            
+            // Check if email exists
+            if (!userEmail) {
+                alert('Please register first!');
+                window.location.href = 'registeration.html';
+                return;
+            }
+            
+            // For now, we'll use "Selected Guide" as placeholder
+            const guideName = 'Selected Guide';
+            
+            const bookingData = {
+                email: userEmail,
+                package: package_type,
+                guideName: guideName,
+                places: places,
+                addons: addons
+            };
+            
+            try {
+                const response = await fetch('http://127.0.0.1:5000/save-booking', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(bookingData)
+                });
+                
+                const result = await response.json();
+                if (response.ok) {
+                    alert('Radhe Radhe! Aapki booking confirm ho gai!');
+                    window.location.href = 'http://127.0.0.1:5500/templates/account';
+                } else {
+                    alert(result.error || 'Booking save nahi ho saki');
+                }
+            } catch (error) {
+                alert('Unable to connect to backend server!');
+                console.error('Error:', error);
+            }
+        });
+    </script>
+</body>
+
+</html>

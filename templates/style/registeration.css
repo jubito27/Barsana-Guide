@@ -1,0 +1,119 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #fcf8f0; /* Soft cream background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+}
+
+.registration-container {
+    background: #ffffff;
+    max-width: 500px;
+    width: 100%;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    border-top: 8px solid #FF9933; /* Saffron header border */
+    animation: float-in 0.8s ease-out;
+}
+
+@keyframes float-in {
+    from { opacity: 0; transform: translateY(20px) scale(0.97); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.form-header {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.form-header h2 {
+    color: #8B4513; /* Earthy brown */
+    margin: 0;
+}
+
+.form-header p {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #444;
+    font-size: 0.9rem;
+}
+
+input, textarea, select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    box-sizing: border-box;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+    background-color: #fff;
+}
+
+input:focus, textarea:focus, select:focus {
+    border-color: #FF9933;
+    box-shadow: 0 0 10px rgba(255, 153, 51, 0.3);
+    transform: translateY(-1px);
+}
+
+.row {
+    display: flex;
+    gap: 15px;
+}
+
+.row .input-group {
+    flex: 1;
+}
+
+.submit-btn {
+    width: 100%;
+    background: linear-gradient(135deg, #FF9933, #FFCC33);
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 10px;
+}
+
+.submit-btn:hover {
+    background: linear-gradient(135deg, #e68a2e, #e6b82e);
+    transform: translateY(-3px) scale(1.01);
+    box-shadow: 0 6px 15px rgba(230, 138, 46, 0.35);
+}
+
+.submit-btn {
+    animation: pulse-shadow 2.5s ease-in-out infinite;
+}
+
+@keyframes pulse-shadow {
+    0%, 100% { box-shadow: 0 4px 12px rgba(255, 153, 51, 0.3); }
+    50% { box-shadow: 0 8px 18px rgba(255, 153, 51, 0.5); }
+}
+
+/* Responsive adjustment */
+@media (max-width: 480px) {
+    .row {
+        flex-direction: column;
+        gap: 0;
+    }
+}

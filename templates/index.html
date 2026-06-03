@@ -40,6 +40,55 @@
       0%, 100% { opacity: 1; }
       50% { opacity: 0; }
     }
+
+
+    .register{
+      background: linear-gradient(45deg, #ff7a18, #ffb200 40%, #ff9a00);
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+      cursor: pointer;
+      box-shadow: 0 6px 18px rgba(255, 134, 35, 0.35), 0 0 0 0 rgba(255, 153, 51, 0.5);
+      transition: transform 0.35s cubic-bezier(.25,.8,.25,1), box-shadow 0.35s ease, background 0.45s ease;
+      position: relative;
+      overflow: hidden;
+      animation: pulse-shadow 2.5s ease-in-out infinite;
+    }
+
+    .register::before {
+      content: '';
+      position: absolute;
+      left: -25%;
+      top: -25%;
+      width: 150%;
+      height: 150%;
+      background: radial-gradient(circle at center, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0) 58%);
+      opacity: 0;
+      transform: translate3d(-100%, -100%, 0) rotate(45deg);
+      transition: transform 0.7s ease, opacity 0.7s ease;
+    }
+
+    .register:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 10px 20px rgba(255, 134, 35, 0.45), 0 0 14px rgba(255, 176, 65, 0.5);
+      background: linear-gradient(45deg, #ff9416, #ffc043 40%, #ffb94a);
+    }
+
+    .register:hover::before {
+      opacity: 1;
+      transform: translate3d(0, 0, 0) rotate(45deg);
+    }
+
+    .register:active {
+      transform: translateY(-1px) scale(0.98);
+      box-shadow: 0 4px 10px rgba(255, 134, 35, 0.25), 0 0 10px rgba(255, 176, 65, 0.35);
+    }
+
   </style>
 
   <!-- Structured Data (Google Logo in Search Results) -->
@@ -62,7 +111,7 @@
     
     <!-- Logo and Site Title -->
     <div class="flex items-center space-x-3">
-      <img src="images/barsanalogo.png" alt="Braj Guide Logo" class="h-16 w-16 object-contain" />
+      <img src="./images/barsanalogo.png" alt="Braj Guide Logo" class="h-16 w-16 object-contain" />
       <div class="text-white">
         <span class="block text-xl sm:text-2xl font-bold">Barsana Guide</span>
         <span class="text-sm text-gray-200">बरसाना दर्शन सहयोग</span>
@@ -80,16 +129,21 @@
 
     <!-- WhatsApp Button + Mobile Toggle -->
     <div class="flex items-center space-x-4">
-      <!-- WhatsApp Contact -->
-      <a href="https://wa.me/917310704467" target="_blank"
+      <!-- WhatsApp Contact
+     <a href="https://wa.me/917310704467" target="_blank"
          class="bg-green-600 hover:bg-green-700 text-white px-3 py-2 rounded-full flex items-center space-x-2 text-sm">
-        <!-- WhatsApp Icon -->
+         WhatsApp Icon 
         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
           <path d="M20.52 3.48A12 12 0 0 0 3.48 20.52L2 24l3.52-1.48A12 12 0 0 0 24 12a11.96 11.96 0 0 0-3.48-8.52zM12 21c-1.63 0-3.2-.33-4.65-.95l-.33-.14-2.7 1.13.51-2.85-.2-.3A8.95 8.95 0 0 1 3 12a9 9 0 1 1 9 9zm4.2-6.3c-.23-.12-1.35-.66-1.56-.74-.2-.07-.34-.12-.48.12s-.56.74-.69.9c-.13.15-.25.17-.48.06a7.38 7.38 0 0 1-2.2-1.35 8.18 8.18 0 0 1-1.5-1.86c-.16-.28-.02-.43.12-.56.12-.12.28-.3.42-.45.14-.16.18-.28.27-.47.09-.18.04-.34-.02-.47-.07-.12-.48-1.16-.66-1.6-.17-.42-.35-.36-.48-.37H8c-.15 0-.37.05-.57.28-.2.22-.77.76-.77 1.84s.79 2.14.9 2.28c.11.15 1.56 2.38 3.77 3.34.53.23.94.37 1.27.48.53.17 1.02.15 1.4.09.43-.07 1.35-.55 1.54-1.08.18-.53.18-.98.13-1.08-.05-.1-.2-.15-.43-.27z"/>
         </svg>
         <span>WhatsApp</span>
-      </a>
+      </a> -->
+      <button class="register" onclick="window.location.href='registeration.html'">Register </button>
 
+      
+  <button class="register" onclick="window.location.href='login.html'">Login </button>
+
+      
       <!-- Mobile Menu Button -->
       <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -102,10 +156,11 @@
   <!-- Mobile Menu Dropdown -->
   <div id="mobile-menu" class="md:hidden hidden px-4 pb-4 bg-black bg-opacity-80 text-white">
     <a href="/" class="block py-2 hover:text-yellow-300">Home</a>
-    <a href="/about" class="block py-2 hover:text-yellow-300">About Me</a>
+    <a href="./aboutme.html" class="block py-2 hover:text-yellow-300">About Me</a>
     <a href="#darshan" class="block py-2 hover:text-yellow-300">Live Darshan</a>
     <a href="#divine-places" class="block py-2 hover:text-yellow-300">Divine Places</a>
     <a href="#contact" class="block py-2 hover:text-yellow-300">Contact</a>
+    
   </div>
 </header>
 
@@ -153,7 +208,7 @@
     <!-- Logo at Bottom -->
    <!-- Logo at Bottom (Reduced Padding/Margin) -->
 <div class="mt-5 mb-0">
-  <img src="images/barsanalogo.png" alt="Braj Guide Logo" class="mx-auto w-40 h-40 md:w-40 md:h-40 rounded-full">
+  <img src="./images/barsanalogo.png" alt="Braj Guide Logo" class="mx-auto w-40 h-40 md:w-40 md:h-40 rounded-full">
 </div>
 
   </div>
@@ -174,35 +229,6 @@
     <div class="mt-3 h-1 w-16 md:w-20 bg-yellow-500 mx-auto rounded-full"></div>
   </div>
 </section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -313,104 +339,110 @@ Jai Jai Shri Radhe!
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
 
       <!-- Card 1 -->
-      <div class="bg-white rounded-2xl shadow-md hover:shadow-xl transition-all p-3 sm:p-5 text-center">
+
+      <div onclick="window.location.href='./radhaRani.html';" class="bg-white rounded-2xl shadow-md hover:shadow-xl transition-all p-5 sm:p-5 text-center cursor-pointer">
         <img src="images/barsana mandir4.jpg" alt="Radha Rani Mandir" class="w-full h-36 sm:h-48 object-cover rounded-xl mb-3">
         <h3 class="text-sm sm:text-lg font-bold text-pink-700">🛕 राधा रानी मंदिर</h3>
       </div>
 
       <!-- Card 2 -->
-      <div class="bg-white rounded-2xl shadow-md hover:shadow-xl transition-all p-3 sm:p-5 text-center">
+      <div onclick="window.location.href='./maangarh.html';" class="bg-white rounded-2xl shadow-md hover:shadow-xl transition-all p-5 sm:p-5 text-center cursor-pointer">
         <img src="images/man mandir.jpg" alt="Mangad" class="w-full h-36 sm:h-48 object-cover rounded-xl mb-3">
         <h3 class="text-sm sm:text-lg font-bold text-pink-700">🌄 मानगढ़</h3>
       </div>
 
       <!-- Card 3 -->
-      <div class="bg-white rounded-2xl shadow-md hover:shadow-xl transition-all p-3 sm:p-5 text-center">
+      <div onclick="window.location.href='./dangarh.html';" class="bg-white rounded-2xl shadow-md hover:shadow-xl transition-all p-5 sm:p-5 text-center cursor-pointer">
         <img src="images/dangad002.png" alt="Dangad" class="w-full h-36 sm:h-48 object-cover rounded-xl mb-3">
         <h3 class="text-sm sm:text-lg font-bold text-pink-700">🌿 दानगढ़</h3>
       </div>
 
       <!-- Card 4 -->
-      <div class="bg-white rounded-2xl shadow-md hover:shadow-xl transition-all p-3 sm:p-5 text-center">
+      <div onclick="window.location.href='./vilasgarh.html';" class="bg-white rounded-2xl shadow-md hover:shadow-xl transition-all p-5 sm:p-5 text-center cursor-pointer">
         <img src="images/vilas gad.jpeg" alt="Vilashgad" class="w-full h-36 sm:h-48 object-cover rounded-xl mb-3">
         <h3 class="text-sm sm:text-lg font-bold text-pink-700">🌸 विलासगढ़</h3>
       </div>
 
       <!-- Card 5 -->
-      <div class="bg-white rounded-2xl shadow-md hover:shadow-xl transition-all p-3 sm:p-5 text-center">
+      <div onclick="window.location.href='./morkuti.html';" class="bg-white rounded-2xl shadow-md hover:shadow-xl transition-all p-5 sm:p-5 text-center cursor-pointer">
         <img src="images/morkuti - Copy.jpeg" alt="Morkuti" class="w-full h-36 sm:h-48 object-cover rounded-xl mb-3">
         <h3 class="text-sm sm:text-lg font-bold text-pink-700">🏯 मोरकुटी</h3>
       </div>
-      
-     <div class="bg-white rounded-2xl shadow-md hover:shadow-xl transition-all p-3 sm:p-5 text-center">
-        <img src="images/jaypur mandir.jpg" alt="Brashbhanu Gaushala" class="w-full h-36 sm:h-48 object-cover rounded-xl mb-3">
-        <h3 class="text-sm sm:text-lg font-bold text-pink-700">कुशल बिहारी जी मंदिर </h3>
-      </div>
 
       <!-- Card - Chitra Sakhi Mandir -->
-<div class="bg-white rounded-2xl shadow-md hover:shadow-xl transition-all p-3 sm:p-5 text-center">
-  <img src="images/chitra sakhi mandir.png" alt="Chitra Sakhi Mandir" class="w-full h-36 sm:h-48 object-cover rounded-xl mb-3">
-  <h3 class="text-sm sm:text-lg font-bold text-pink-700">🛕 चित्रा सखी मंदिर</h3>
-</div>
-
-
+      <div onclick="window.location.href='./chitrasakhi.html';" class="bg-white rounded-2xl shadow-md hover:shadow-xl transition-all p-5 sm:p-5 text-center cursor-pointer">
+        <img src="images/chitra sakhi mandir.png" alt="Chitra Sakhi Mandir" class="w-full h-36 sm:h-48 object-cover rounded-xl mb-3">
+        <h3 class="text-sm sm:text-lg font-bold text-pink-700">🛕 चित्रा सखी मंदिर</h3>
+      </div>
 
       <!-- Card 6 -->
-      <div class="bg-white rounded-2xl shadow-md hover:shadow-xl transition-all p-3 sm:p-5 text-center">
+      <div onclick="window.location.href='./kushalbihari.html';" class="bg-white rounded-2xl shadow-md hover:shadow-xl transition-all p-5 sm:p-5 text-center cursor-pointer">
+        <img src="images/jaypur mandir.jpg" alt="Kushal Bihari" class="w-full h-36 sm:h-48 object-cover rounded-xl mb-3">
+        <h3 class="text-sm sm:text-lg font-bold text-pink-700">कुशल बिहारी जी मंदिर</h3>
+      </div>
+      
+      <!-- Card 7 -->
+      <div onclick="window.location.href='./gehvarvan.html';" class="bg-white rounded-2xl shadow-md hover:shadow-xl transition-all p-5 sm:p-5 text-center cursor-pointer">
         <img src="images/gehvarkunf.jpg" alt="Gehvarvan" class="w-full h-36 sm:h-48 object-cover rounded-xl mb-3">
         <h3 class="text-sm sm:text-lg font-bold text-pink-700">🌳 गहवरवन</h3>
       </div>
 
-      <!-- Card 7 -->
-      <div class="bg-white rounded-2xl shadow-md hover:shadow-xl transition-all p-3 sm:p-5 text-center">
+      <!-- Card 8 -->
+      <div onclick="window.location.href='./radhaBagh.html';" class="bg-white rounded-2xl shadow-md hover:shadow-xl transition-all p-5 sm:p-5 text-center cursor-pointer">
         <img src="images/radha bagh.jpg" alt="Radha Bag" class="w-full h-36 sm:h-48 object-cover rounded-xl mb-3">
         <h3 class="text-sm sm:text-lg font-bold text-pink-700">🏡 राधा बाग</h3>
       </div>
 
-      <!-- Card 8 -->
-      <div class="bg-white rounded-2xl shadow-md hover:shadow-xl transition-all p-3 sm:p-5 text-center">
+      <!-- Card 9 -->
+      <div onclick="window.location.href='./krishnaBagh.html';" class="bg-white rounded-2xl shadow-md hover:shadow-xl transition-all p-5 sm:p-5 text-center cursor-pointer">
         <img src="images/krishna bagh.png" alt="Krishna Bag" class="w-full h-36 sm:h-48 object-cover rounded-xl mb-3">
         <h3 class="text-sm sm:text-lg font-bold text-pink-700">🌿 कृष्ण बाग</h3>
       </div>
 
-      <!-- Card 9 -->
-      <div class="bg-white rounded-2xl shadow-md hover:shadow-xl transition-all p-3 sm:p-5 text-center">
+      <!-- Card 10 -->
+      <div onclick="window.location.href='./priyakund.html';" class="bg-white rounded-2xl shadow-md hover:shadow-xl transition-all p-5 sm:p-5 text-center cursor-pointer">
         <img src="images/priya kund.jpg" alt="Priyakund" class="w-full h-36 sm:h-48 object-cover rounded-xl mb-3">
         <h3 class="text-sm sm:text-lg font-bold text-pink-700">💧 प्रियाकुंड</h3>
       </div>
 
-      <!-- Card 10 -->
-      <div class="bg-white rounded-2xl shadow-md hover:shadow-xl transition-all p-3 sm:p-5 text-center">
+      <!-- Card 11 -->
+      <div onclick="window.location.href='./sankrikhor.html';" class="bg-white rounded-2xl shadow-md hover:shadow-xl transition-all p-5 sm:p-5 text-center cursor-pointer">
         <img src="images/sankri khor.jpg" alt="Sankri Khor" class="w-full h-36 sm:h-48 object-cover rounded-xl mb-3">
         <h3 class="text-sm sm:text-lg font-bold text-pink-700">🏞️ साँकरी खोर</h3>
       </div>
 
-      <!-- Card 11 -->
-      <div class="bg-white rounded-2xl shadow-md hover:shadow-xl transition-all p-3 sm:p-5 text-center">
+      <!-- Card 12 -->
+      <div onclick="window.location.href='./108kutiya.html';" class="bg-white rounded-2xl shadow-md hover:shadow-xl transition-all p-5 sm:p-5 text-center cursor-pointer">
         <img src="images/108 kutiya.jpg" alt="108 Kutiya" class="w-full h-36 sm:h-48 object-cover rounded-xl mb-3">
         <h3 class="text-sm sm:text-lg font-bold text-pink-700">🏚️ 108 कुटिया</h3>
       </div>
 
-      <!-- Card 12 -->
-      <div class="bg-white rounded-2xl shadow-md hover:shadow-xl transition-all p-3 sm:p-5 text-center">
+      <!-- Card 13 -->
+      <div onclick="window.location.href='./rangiligali.html';" class="bg-white rounded-2xl shadow-md hover:shadow-xl transition-all p-5 sm:p-5 text-center cursor-pointer">
         <img src="images/rangili gali.jpeg" alt="Rangili Gali" class="w-full h-36 sm:h-48 object-cover rounded-xl mb-3">
         <h3 class="text-sm sm:text-lg font-bold text-pink-700">🎨 रंगीली गली</h3>
       </div>
 
-      <!-- Card 13 -->
-      <div class="bg-white rounded-2xl shadow-md hover:shadow-xl transition-all p-3 sm:p-5 text-center">
+      <!-- Card 14 -->
+      <div onclick="window.location.href='./vinodbaba.html';" class="bg-white rounded-2xl shadow-md hover:shadow-xl transition-all p-5 sm:p-5 text-center cursor-pointer">
         <img src="images/vinod baba2.1.png" alt="Vinod Baba" class="w-full h-36 sm:h-48 object-cover rounded-xl mb-3">
         <h3 class="text-sm sm:text-lg font-bold text-pink-700">🙏 विनोद बाबा</h3>
       </div>
 
-      <!-- Card 14 -->
-      <div class="bg-white rounded-2xl shadow-md hover:shadow-xl transition-all p-3 sm:p-5 text-center">
+      <!-- Card 15 -->
+      <div onclick="window.location.href='./brishbhanugaushala.html';" class="bg-white rounded-2xl shadow-md hover:shadow-xl transition-all p-5 sm:p-5 text-center cursor-pointer">
         <img src="images/brashbhanu gaushla.jpg" alt="Brashbhanu Gaushala" class="w-full h-36 sm:h-48 object-cover rounded-xl mb-3">
         <h3 class="text-sm sm:text-lg font-bold text-pink-700">🐄 वृषभानु गौशाला</h3>
       </div>
 
-      <!-- Card 15 -->
-      <div class="bg-white rounded-2xl shadow-md hover:shadow-xl transition-all p-3 sm:p-5 text-center">
+      <!-- Card 16 -->
+      <div onclick="window.location.href='./chitrasakhi.html';" class="bg-white rounded-2xl shadow-md hover:shadow-xl transition-all p-5 sm:p-5 text-center cursor-pointer">
+        <img src="images/chitra sakhi mandir.png" alt="Chitra Sakhi Mandir" class="w-full h-36 sm:h-48 object-cover rounded-xl mb-3">
+        <h3 class="text-sm sm:text-lg font-bold text-pink-700">🛕 चित्रा सखी मंदिर</h3>
+      </div>
+
+      <!-- Card 17 -->
+      <div onclick="window.location.href='./rameshbabagaushala.html';" class="bg-white rounded-2xl shadow-md hover:shadow-xl transition-all p-5 sm:p-5 text-center cursor-pointer">
         <img src="images/ramesh baba gaushala.jpg" alt="Ramesh Baba Gaushala" class="w-full h-36 sm:h-48 object-cover rounded-xl mb-3">
         <h3 class="text-sm sm:text-lg font-bold text-pink-700">🐄 रमेश बाबा गौशाला</h3>
       </div>

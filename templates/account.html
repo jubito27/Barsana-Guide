@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Braj Account - Braj Guide</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="./style/account.css">
+</head>
+
+<body>
+
+    <div class="dashboard-wrapper">
+        <main class="content">
+            <header class="welcome-header">
+                <h1>Radhe Radhe, <span id="userName">Yatri</span>!</h1>
+                <p>Aapki spiritual yatra ka dashboard.</p>
+            </header>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <i class="fas fa-map-marked-alt"></i>
+                    <div>
+                        <h3>Upcoming Trip</h3>
+                        <p id="tripDate">Not Scheduled</p>
+                    </div>
+                </div>
+                <div class="stat-card gold">
+                    <i class="fas fa-crown"></i>
+                    <div>
+                        <h3>Package</h3>
+                        <p id="packageName">None</p>
+                    </div>
+                </div>
+            </div>
+
+            <section class="booking-status">
+                <h2>Active Booking Details</h2>
+                <div id="noBooking" class="empty-state">
+                    <p>Abhi tak koi guide book nahi kiya hai.</p>
+                    <a href="guidecard.html" class="cta-btn">Book Your Guide Now</a>
+                </div>
+
+                <div id="bookingCard" class="active-card" style="display: none;">
+                    <div class="guide-info">
+                        <img src="https://via.placeholder.com/80" alt="Guide" id="guideImg">
+                        <div>
+                            <h4 id="bookedGuideName">Pandit Rajesh Sharma</h4>
+                            <span>Verified Braj Guide</span>
+                        </div>
+                        <div class="status-badge">Confirmed</div>
+                    </div>
+                    <div class="trip-details">
+                        <p><strong>Places:</strong> <span id="bookedPlaces">Vrindavan, Barsana</span></p>
+                        <p><strong>Add-ons:</strong> <span id="bookedAddons">Free Prasad Included</span></p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        // Backend se data fetch karne ka logic yahan aayega
+        // Abhi ke liye hum localStorage se check kar sakte hain
+        document.addEventListener('DOMContentLoaded', () => {
+            const name = localStorage.getItem('user_name') || 'Abhishek';
+            document.getElementById('userName').innerText = name;
+        });
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            // Registration ke waqt humne email localStorage mein save kiya tha
+            const loggedIn = localStorage.getItem('isLoggedIn');
+            const userEmail = localStorage.getItem('user_email');
+    
+            if (!loggedIn || loggedIn !== 'true') {
+                // Agar login nahi hai, toh dhakke se register page par bhejo
+                window.location.href = 'registeration.html';
+            }
+
+            try {
+                const response = await fetch(`http://127.0.0.1:5000/get-user-data/${userEmail}`);
+                const data = await response.json();
+
+                if (data.status === 'success') {
+                    // 1. User ka naam set karein
+                    document.getElementById('userName').innerText = data.name;
+
+                    // 2. Check karein ki booking hai ya nahi
+                    if (data.guide && data.guide !== "") {
+                        // Agar booking hai:
+                        document.getElementById('noBooking').style.display = 'none';
+                        document.getElementById('bookingCard').style.display = 'block';
+
+                        // Details fill karein
+                        document.getElementById('bookedGuideName').innerText = data.guide;
+                        document.getElementById('packageName').innerText = data.package || "Custom Plan";
+                        document.getElementById('bookedPlaces').innerText = data.places || "Braj Darshan";
+                        document.getElementById('bookedAddons').innerText = data.addons || "No Add-ons";
+                    } else {
+                        // Agar booking nahi hai:
+                        document.getElementById('noBooking').style.display = 'block';
+                        document.getElementById('bookingCard').style.display = 'none';
+                    }
+                }
+            } catch (error) {
+                console.error("Error fetching data:", error);
+            }
+        });
+    </script>
+</body>
+
+</html>

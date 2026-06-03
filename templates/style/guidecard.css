@@ -1,0 +1,197 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Metamorphous&display=swap');
+
+/* Basic Page Reset */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #fcf8f0; /* Soft cream background */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-x: hidden;
+}
+
+header {
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    animation: fadeInDown 1.2s ease-out; /* Header entry animation */
+}
+
+.logo {
+    font-family: 'Metamorphous', serif; /* Special spiritual font */
+    font-size: 3rem;
+    color: #8B4513; /* Earthy brown */
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+header p {
+    color: #666;
+    margin-top: -5px;
+    font-size: 1.1rem;
+}
+
+/* Guides Container with Flexbox */
+.guides-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    max-width: 1200px;
+    width: 90%;
+    margin-bottom: 100px;
+}
+
+:root {
+    --saffron: #FF9933;
+    --gold: #FFCC33;
+    --deep-brown: #8B4513;
+    --cream: #fcf8f0;
+
+/* --- ADVANCED GUIDE CARD --- */
+.guide-card {
+    background: #ffffff;
+    border-radius: 25px;
+    width: 320px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    border: 1px solid rgba(139, 69, 19, 0.1);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    
+    /* Smooth multi-property transition */
+    transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Floating Animation on Hover */
+.guide-card:hover {
+    transform: translateY(-29px) scale(1.03);
+    box-shadow: 0 25px 50px rgba(139, 69, 19, 0.15);
+    border-color: var(--saffron);
+}
+
+/* Shiny Glass Effect on Hover */
+.guide-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(to right, transparent, rgba(255,255,255,0.3), transparent);
+    transform: skewX(-25deg);
+    transition: 0.75s;
+    z-index: 2;
+}
+
+.guide-card:hover::before {
+    left: 125%;
+}
+
+/* --- IMAGE SECTION --- */
+.card-image {
+    width: 100%;
+    height: 280px;
+    overflow: hidden;
+    position: relative;
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s cubic-bezier(0.2, 1, 0.3, 1);
+}
+
+/* Zoom and Slight Rotation on Hover */
+.guide-card:hover .card-image img {
+    transform: scale(1.1) rotate(2deg);
+}
+
+/* --- CONTENT SECTION --- */
+.card-content {
+    padding: 25px;
+    background: #fff;
+    transition: background 0.4s ease;
+}
+
+.guide-card:hover .card-content {
+    background: #fffcf5; /* Light spiritual tint on hover */
+}
+
+.card-content h3 {
+    margin: 0;
+    font-size: 1.4rem;
+    color: var(--deep-brown);
+    font-family: 'Metamorphous', serif;
+    transition: color 0.3s ease;
+}
+
+.guide-card:hover h3 {
+    color: var(--saffron);
+}
+
+/* --- RATING STARS ANIMATION --- */
+.rating {
+    margin: 15px 0;
+    color: #ccc; /* Default grey stars */
+    transition: all 0.4s ease;
+}
+
+/* Stars turn gold one by one or together on card hover */
+.guide-card:hover .rating {
+    color: var(--gold);
+    transform: scale(1.05);
+}
+
+/* --- BUTTON ANIMATION --- */
+.book-btn {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 12px;
+    background: var(--deep-brown);
+    color: white;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+}
+
+/* Button turns Saffron and expands on hover */
+.guide-card:hover .book-btn {
+    background: linear-gradient(45deg, var(--saffron), var(--gold));
+    box-shadow: 0 5px 15px rgba(255, 153, 51, 0.4);
+}
+
+.book-btn i {
+    transition: transform 0.3s ease;
+}
+
+.book-btn:hover i {
+    transform: translateX(8px);
+}
+
+/* --- SCROLL REVEAL (AOS Backup) --- */
+.guide-card {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.8s forwards ease-out;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Delay for each card animation */
+.guide-card:nth-child(1) { animation-delay: 0.2s; }
+.guide-card:nth-child(2) { animation-delay: 0.4s; }
+.guide-card:nth-child(3) { animation-delay: 0.6s;}}

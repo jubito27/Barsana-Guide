@@ -1,0 +1,459 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Merriweather:wght@400;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #fcf8f0 0%, #fde4e1 50%, #fff9f0 100%);
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* Main Container with Spiritual Flair */
+.booking-container {
+    max-width: 650px;
+    margin: 40px auto;
+    padding: 40px;
+    background: linear-gradient(135deg, #fff9f0 0%, #fffbf5 50%, #fff3e0 100%);
+    border-radius: 30px;
+    box-shadow: 0 15px 40px rgba(255, 153, 51, 0.15), 0 0 60px rgba(255, 153, 51, 0.05);
+    border-top: 6px solid #FF9933;
+    border-bottom: 3px solid #FFCC33;
+    animation: float-in 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.booking-container::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(255, 153, 51, 0.08) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: float-bg 15s ease-in-out infinite;
+}
+
+@keyframes float-in {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes float-bg {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(30px, -30px); }
+}
+
+/* Spiritual Title */
+.spiritual-title {
+    text-align: center;
+    font-size: 2.2rem;
+    font-weight: 700;
+    font-family: 'Merriweather', serif;
+    color: #8B4513;
+    margin-bottom: 35px;
+    text-shadow: 2px 2px 4px rgba(255, 153, 51, 0.2);
+    letter-spacing: 0.5px;
+    animation: title-glow 3s ease-in-out infinite;
+}
+
+@keyframes title-glow {
+    0%, 100% { text-shadow: 2px 2px 4px rgba(255, 153, 51, 0.2); }
+    50% { text-shadow: 2px 2px 8px rgba(255, 153, 51, 0.4); }
+}
+
+/* Section Cards with Spiritual Styling */
+.section-card {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 249, 240, 0.95) 100%);
+    padding: 28px;
+    border-radius: 18px;
+    margin-bottom: 28px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+    border-left: 5px solid #FF9933;
+    border-right: 2px solid #FFCC33;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    animation: slide-up 0.6s ease-out backwards;
+}
+
+.section-card:nth-child(1) { animation-delay: 0.1s; }
+.section-card:nth-child(2) { animation-delay: 0.2s; }
+.section-card:nth-child(3) { animation-delay: 0.3s; }
+
+.section-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(255, 153, 51, 0.2);
+    border-left-color: #FFCC33;
+}
+
+@keyframes slide-up {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.section-card h3 {
+    color: #8B4513;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: 'Merriweather', serif;
+}
+
+.section-card h3 i {
+    color: #FF9933;
+    font-size: 1.5rem;
+    transition: transform 0.3s ease;
+}
+
+.section-card:hover h3 i {
+    transform: rotate(15deg) scale(1.1);
+}
+
+.hint {
+    color: #9B6B47;
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+    font-style: italic;
+}
+
+/* Package Radio Buttons as Cards */
+.package-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 15px;
+}
+
+.p-card {
+    border: 2px solid #E8D4C4;
+    padding: 16px;
+    text-align: center;
+    border-radius: 14px;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    background: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.p-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 153, 51, 0.2), transparent);
+    transition: left 0.6s ease;
+}
+
+.p-card:hover::before {
+    left: 100%;
+}
+
+.p-card:has(input:checked) {
+    border-color: #FF9933;
+    background: linear-gradient(135deg, #fff9f0, #ffe4d6);
+    box-shadow: 0 6px 15px rgba(255, 153, 51, 0.25);
+    transform: scale(1.05);
+}
+
+.p-card label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-weight: 600;
+    color: #6B4423;
+    position: relative;
+    z-index: 1;
+}
+
+.p-card input[type="radio"] {
+    margin-right: 8px;
+    accent-color: #FF9933;
+    cursor: pointer;
+}
+
+.p-card span {
+    font-size: 0.95rem;
+}
+
+/* City Selector */
+.city-selector {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.city-item {
+    border: 2px solid #E8D4C4;
+    border-radius: 14px;
+    padding: 16px;
+    background: linear-gradient(135deg, #fff9f0, #fffbf5);
+    transition: all 0.4s ease;
+    animation: fade-in 0.6s ease-out backwards;
+}
+
+.city-item:nth-child(1) { animation-delay: 0.05s; }
+.city-item:nth-child(2) { animation-delay: 0.1s; }
+.city-item:nth-child(3) { animation-delay: 0.15s; }
+
+@keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.city-item:hover {
+    border-color: #FF9933;
+    box-shadow: 0 6px 15px rgba(255, 153, 51, 0.15);
+    transform: translateX(5px);
+}
+
+.city-item input[type="checkbox"] {
+    accent-color: #FF9933;
+    margin-right: 10px;
+    cursor: pointer;
+    width: 18px;
+    height: 18px;
+    transition: transform 0.2s ease;
+}
+
+.city-item input[type="checkbox"]:hover {
+    transform: scale(1.2);
+}
+
+.main-city {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #8B4513;
+    cursor: pointer;
+    font-family: 'Merriweather', serif;
+    transition: color 0.3s ease;
+}
+
+.city-item:hover .main-city {
+    color: #FF9933;
+}
+
+/* Sub-places with Smooth Expansion */
+.sub-places {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), 
+                opacity 0.3s ease,
+                padding 0.3s ease;
+    padding-left: 35px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    opacity: 0;
+}
+
+.sub-places.active {
+    max-height: 600px;
+    padding-top: 16px;
+    padding-bottom: 8px;
+    opacity: 1;
+}
+
+.sub-places label {
+    display: flex;
+    align-items: center;
+    color: #5C3D2E;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    animation: slide-in 0.4s ease-out backwards;
+}
+
+.sub-places.active label:nth-child(1) { animation-delay: 0.05s; }
+.sub-places.active label:nth-child(2) { animation-delay: 0.1s; }
+.sub-places.active label:nth-child(3) { animation-delay: 0.15s; }
+.sub-places.active label:nth-child(4) { animation-delay: 0.2s; }
+
+@keyframes slide-in {
+    from {
+        opacity: 0;
+        transform: translateX(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.sub-places label:hover {
+    color: #FF9933;
+    transform: translateX(5px);
+}
+
+.sub-places input[type="checkbox"] {
+    accent-color: #FF9933;
+    margin-right: 10px;
+    cursor: pointer;
+    width: 16px;
+    height: 16px;
+}
+
+/* Free Addons Container */
+.free-addons {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Addon Items */
+.addon-item {
+    display: flex;
+    align-items: center;
+    padding: 14px 16px;
+    border: 2px solid #E8D4C4;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(255, 249, 240, 0.8));
+    animation: fade-in 0.6s ease-out backwards;
+}
+
+.addon-item:nth-child(1) { animation-delay: 0.05s; }
+.addon-item:nth-child(2) { animation-delay: 0.1s; }
+
+.addon-item:hover {
+    border-color: #FF9933;
+    background: linear-gradient(135deg, #fff9f0, #ffe4d6);
+    transform: translateX(8px);
+    box-shadow: 0 6px 15px rgba(255, 153, 51, 0.2);
+}
+
+.addon-item input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin-right: 14px;
+    cursor: pointer;
+    accent-color: #FF9933;
+    transition: transform 0.2s ease;
+}
+
+.addon-item:hover input[type="checkbox"] {
+    transform: scale(1.15);
+}
+
+.addon-text {
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    color: #6B4423;
+    font-size: 0.95rem;
+}
+
+.free-tag {
+    background: linear-gradient(135deg, #2ecc71, #27ae60);
+    color: white;
+    font-size: 0.65rem;
+    padding: 3px 10px;
+    border-radius: 12px;
+    margin-left: 10px;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    box-shadow: 0 3px 8px rgba(46, 204, 113, 0.25);
+    animation: pulse-tag 2s ease-in-out infinite;
+}
+
+@keyframes pulse-tag {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+/* Submit Button */
+.final-book-btn {
+    width: 100%;
+    background: linear-gradient(45deg, #FF9933 0%, #FFB700 50%, #FFCC33 100%);
+    color: white;
+    border: none;
+    padding: 18px 24px;
+    font-size: 17px;
+    font-weight: 700;
+    border-radius: 14px;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow: 0 8px 20px rgba(255, 153, 51, 0.35), 0 0 0 0 rgba(255, 153, 51, 0.4);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family: 'Merriweather', serif;
+    position: relative;
+    overflow: hidden;
+    margin-top: 15px;
+    animation: button-appear 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.5s backwards;
+}
+
+@keyframes button-appear {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.final-book-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0%;
+    height: 0%;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease, height 0.6s ease;
+}
+
+.final-book-btn:hover::before {
+    width: 300%;
+    height: 300%;
+}
+
+.final-book-btn:hover {
+    transform: translateY(-4px) scale(1.01);
+    box-shadow: 0 12px 30px rgba(255, 153, 51, 0.5), 0 0 20px rgba(255, 176, 0, 0.4);
+    background: linear-gradient(45deg, #ff9a1a, #ffc000, #ffd700);
+}
+
+.final-book-btn:active {
+    transform: translateY(-1px) scale(0.99);
+    box-shadow: 0 4px 12px rgba(255, 153, 51, 0.3);
+}
+
+.final-book-btn::after {
+    content: '';
+    position: absolute;
+    animation: pulse-shadow 2s ease-in-out infinite;
+}
+
+@keyframes pulse-shadow {
+    0%, 100% { box-shadow: 0 0 10px rgba(255, 153, 51, 0.3); }
+    50% { box-shadow: 0 0 20px rgba(255, 153, 51, 0.6); }
+}
